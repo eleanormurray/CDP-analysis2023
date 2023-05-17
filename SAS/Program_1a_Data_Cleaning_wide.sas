@@ -1,7 +1,7 @@
-libname cdp 'C:\Users\ejmurray\Dropbox\ProjectManagement\Trials\CDP\CDP_paper_final';
+libname cdp '<path>';
 
 data cdp.expertDAG;
-set cdp.allcdp_new;
+set cdp.allcdp_new; /* allcdp_new.sas7bdat is the full cleaned trial data available from NHLBI*/
 where itr = 6;  /*ITR = 6 is placebo arm. */
 
 keep 
