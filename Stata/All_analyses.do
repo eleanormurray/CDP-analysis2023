@@ -6,7 +6,7 @@
 
 **A. Unadjusted analysis**
 *Import Data 
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 *Unadusted Risk Differences and regression analysis new calculation 
 *Generate 2x2 table 
 tab adhx15bin dth5
@@ -15,7 +15,7 @@ csi 133 369 320 1659
 reg adhx15bin dth5
 
 **B. Linear regression with standardization**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 *Run adjusted linear regression with  adherence measure (only runs with index=0)
 reg dth5 i.adhx15bin age_bin nonwhite adhpre0bin cig rbw_bin inact mi_bin ///
 	ap chf aci icia ic irk niha_bin1 cardiom diur antihyp dig oralhyp antiarr ///
@@ -24,7 +24,7 @@ margins, dydx(adhx15bin)
 margins i.adhx15bin	
 
 **C. Logistic regression with standardization**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 *Run adjusted linear regression with  adherence measure (only runs with index=0)
 logit dth5 i.adhx15bin age_bin nonwhite adhpre0bin cig rbw_bin inact mi_bin ///
 	ap chf aci icia ic irk niha_bin1 cardiom diur antihyp dig oralhyp antiarr ///
@@ -35,7 +35,7 @@ margins i.adhx15bin
 
 **D. Logistic regression with inverse probability weighting for time-varying adhernece and visit attendence and standardization**
 
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_ag_new.dta", clear
+use "<path>\expertdag_ag_new.dta", clear
 
 /*To ensure numerator & denominator models for the two sets of weights are fit to the same individuals we need to create some missingness flags*/
 gen adhr_t_flag = 1
@@ -242,7 +242,7 @@ matrix list observe
 
 **1. 1980 dataset, 1980 adherence measure**
 *Import Data 
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide_orig.dta", clear
+use "<path>\expertdag_wide_orig.dta", clear
 *Unadjusted Risk Differences and regressional analysis old calculation 
 tab old_adhx15bin dth5
 csi 245 279 579 1527
@@ -250,7 +250,7 @@ reg old_adhx15bin dth5
 
 **2. 1980 dataset, 2016 adherence measure**
 *Import Data 
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide_orig.dta", clear
+use "<path>\expertdag_wide_orig.dta", clear
 *Unadusted Risk Differences and regression analysis new calculation 
 *Generate 2x2 table 
 tab adhx15bin dth5
@@ -260,7 +260,7 @@ reg adhx15bin dth5
 
 **3. 2022 dataset -- full covariate list, 1980 adherence measure**
 *Import Data 
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 *Unadjusted Risk Differences and regressional analysis old calculation 
 tab old_adhx15bin dth5
 csi 247 288 590 1577
@@ -268,7 +268,7 @@ reg old_adhx15bin dth5
 
 **4. 2022 dataset -- full covariate list, 2016 adherence measure**
 *Import Data 
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 *Unadusted Risk Differences and regression analysis new calculation 
 *Generate 2x2 table 
 tab adhx15bin dth5
@@ -279,7 +279,7 @@ reg adhx15bin dth5
 
 **5. 2022 dataset -- subset covariate list, 1980 adherence measure**
 *Import Data 
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide_subset.dta", clear
+use "<path>\expertdag_wide_subset.dta", clear
 *Unadjusted Risk Differences and regressional analysis old calculation 
 tab old_adhx15bin dth5
 csi 247 289 592 1578
@@ -287,7 +287,7 @@ reg old_adhx15bin dth5
 
 **6. 2022 dataset -- subset covariate list, 2016 adherence measure**
 *Import Data 
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide_subset.dta", clear
+use "<path>\expertdag_wide_subset.dta", clear
 *Unadusted Risk Differences and regression analysis new calculation 
 *Generate 2x2 table 
 tab adhx15bin dth5
@@ -301,7 +301,7 @@ reg adhx15bin dth5
 ********************************
 
 **1. 1980 dataset, 1980 adherence measure, 1980 covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide_orig.dta", clear
+use "<path>\expertdag_wide_orig.dta", clear
 reg dth5 i.old_adhx15bin age_bin nonwhite mi_bin niha_bin1 rbw_bin ///
 			chf aci ap ic icia dig diur irk antiarr antihyp oralhyp  ///
 			cardiom stelev hifastgluc cig inact anyqqs anystdep ///
@@ -312,7 +312,7 @@ margins, dydx(old_adhx15bin)
 margins i.old_adhx15bin
 
 **2. 1980 dataset, 2016 adherence measure, 1980 covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide_orig.dta", clear
+use "<path>\expertdag_wide_orig.dta", clear
 reg dth5 i.adhx15bin age_bin nonwhite mi_bin niha_bin1 rbw_bin ///
 			chf aci ap ic icia dig diur irk antiarr antihyp oralhyp  ///
 			cardiom stelev hifastgluc cig inact anyqqs anystdep ///
@@ -323,7 +323,7 @@ margins, dydx(adhx15bin)
 margins i.adhx15bin
 
 **3. 2022 dataset -- full covariate list, 2016 adherence measure, 2022 full list covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 reg dth5 i.adhx15bin age_bin nonwhite adhpre0bin cig rbw_bin inact mi_bin ///
 	ap chf aci icia ic irk niha_bin1 cardiom diur antihyp dig oralhyp antiarr ///
 	hifastgluc i.hyperlipid diab afib employ fulltime hypertens htmed i.occupation
@@ -331,7 +331,7 @@ margins, dydx(adhx15bin)
 margins i.adhx15bin	
 	
 **4. 2022 dataset -- full covariate list, 1980 adherence measure, 2022 full list covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 reg dth5 i.old_adhx15bin  age_bin nonwhite adhpre0bin cig rbw_bin inact mi_bin ///
 	ap chf aci icia ic irk niha_bin1 cardiom diur antihyp dig oralhyp antiarr ///
 	hifastgluc i.hyperlipid diab afib employ fulltime hypertens htmed i.occupation
@@ -340,7 +340,7 @@ margins i.old_adhx15bin
 
 
 **5. 2022 dataset -- subset covariate list, 2016 adherence measure, 2022 subset  list covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 reg dth5 i.adhx15bin age_bin nonwhite adhpre0bin cig rbw_bin inact mi_bin ///
 	ap chf aci icia ic irk niha_bin1 cardiom diur antihyp dig oralhyp antiarr ///
 	hifastgluc
@@ -348,7 +348,7 @@ margins, dydx(adhx15bin)
 margins i.adhx15bin	
 	
 **6. 2022 dataset -- subset covariate list, 1980 adherence measure, 2022 subset  list covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 reg dth5 i.old_adhx15bin age_bin nonwhite adhpre0bin cig rbw_bin inact mi_bin ///
 	ap chf aci icia ic irk niha_bin1 cardiom diur antihyp dig oralhyp antiarr ///
 	hifastgluc
@@ -360,7 +360,7 @@ margins i.old_adhx15bin
 *****Logistic Regression*****
 *****************************
 **1. 1980 dataset, 1980 adherence measure, 1980 covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide_orig.dta", clear
+use "<path>\expertdag_wide_orig.dta", clear
 logit dth5 i.old_adhx15bin age_bin nonwhite mi_bin niha_bin1 rbw_bin ///
 			chf aci ap ic icia dig diur irk antiarr antihyp oralhyp  ///
 			cardiom stelev hifastgluc cig inact anyqqs anystdep ///
@@ -371,7 +371,7 @@ margins, dydx(old_adhx15bin)
 margins i.old_adhx15bin
 
 **2. 1980 dataset, 2016 adherence measure, 1980 covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide_orig.dta", clear
+use "<path>\expertdag_wide_orig.dta", clear
 logit dth5 i.adhx15bin age_bin nonwhite mi_bin niha_bin1 rbw_bin ///
 			chf aci ap ic icia dig diur irk antiarr antihyp oralhyp  ///
 			cardiom stelev hifastgluc cig inact anyqqs anystdep ///
@@ -382,7 +382,7 @@ margins, dydx(adhx15bin)
 margins i.adhx15bin
 
 **3. 2022 dataset -- full covariate list, 2016 adherence measure, 2022 full list covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 logit dth5 i.adhx15bin age_bin nonwhite adhpre0bin cig rbw_bin inact mi_bin ///
 	ap chf aci icia ic irk niha_bin1 cardiom diur antihyp dig oralhyp antiarr ///
 	hifastgluc i.hyperlipid diab afib employ fulltime hypertens htmed i.occupation
@@ -390,7 +390,7 @@ margins, dydx(adhx15bin)
 margins i.adhx15bin	
 	
 **4. 2022 dataset -- full covariate list, 1980 adherence measure, 2022 full list covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 logit dth5 i.old_adhx15bin  age_bin nonwhite adhpre0bin cig rbw_bin inact mi_bin ///
 	ap chf aci icia ic irk niha_bin1 cardiom diur antihyp dig oralhyp antiarr ///
 	hifastgluc i.hyperlipid diab afib employ fulltime hypertens htmed i.occupation
@@ -399,7 +399,7 @@ margins i.old_adhx15bin
 
 
 **5. 2022 dataset -- subset covariate list, 2016 adherence measure, 2022 subset  list covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 logit dth5 i.adhx15bin age_bin nonwhite adhpre0bin cig rbw_bin inact mi_bin ///
 	ap chf aci icia ic irk niha_bin1 cardiom diur antihyp dig oralhyp antiarr ///
 	hifastgluc
@@ -407,7 +407,7 @@ margins, dydx(adhx15bin)
 margins i.adhx15bin	
 	
 **6. 2022 dataset -- subset covariate list, 1980 adherence measure, 2022 subset  list covariates**
-use "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\Stata data\expertdag_wide.dta", clear
+use "<path>\expertdag_wide.dta", clear
 logit dth5 i.old_adhx15bin age_bin nonwhite adhpre0bin cig rbw_bin inact mi_bin ///
 	ap chf aci icia ic irk niha_bin1 cardiom diur antihyp dig oralhyp antiarr ///
 	hifastgluc
