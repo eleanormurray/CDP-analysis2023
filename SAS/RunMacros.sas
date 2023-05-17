@@ -1,6 +1,6 @@
 
 
-libname cdp "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS data";
+libname cdp "<path>\SAS data";
 
 
 /*****RUN MACROS***/
@@ -34,17 +34,17 @@ libname cdp "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia
 /***************************************/
 /*Unadjusted: old adherence definition*/
 /*Part A unadj == old adherence definition (missed adherence = 0). This replicates original CDP */
-%partA_unadjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Unadj.old_data.rtf", 
+%partA_unadjusted( outdest = "<path>\PartA.Unadj.old_data.rtf", 
 		inset = ExpertDAG_wide_orig, titlemain = "Unadjusted, Old data, Missed Adherence = 0", 
 		nboot = &nboot, lib = cdp);
 
 /*Subset of original covs: using dataset with missing obs deleted on basis of ^trimmed^ covariate list*/
-%partA_unadjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Unadj.subset_covs.rtf", 
+%partA_unadjusted( outdest = "<path>\PartA.Unadj.subset_covs.rtf", 
 		inset = ExpertDAG_wide_subset, titlemain = "Unadjusted, New data, Missed Adherence = 0", 
 		nboot = &nboot, lib = cdp);
 
 /*DAG-based analysis Using dataset with missing obs deleted on basis of NEW covariate list*/
-%partA_unadjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Unadj.new_data.rtf", 
+%partA_unadjusted( outdest = "<path>\PartA.Unadj.new_data.rtf", 
 		inset = ExpertDAG_wide, titlemain = "Unadjusted, New data, Missed Adherence = 0", 
 		nboot = &nboot, lib = cdp);
 /***************************************/
@@ -56,51 +56,51 @@ libname cdp "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia
 		nboot = &nboot, lib = cdp);
 
 /*Unadjusted; new dataset; new adherence definition*/
-%partB_unadjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Unadj.new_cov_data.rtf", 
+%partB_unadjusted( outdest = "<path>\PartB.Unadj.new_cov_data.rtf", 
 		inset = ExpertDAG_wide, titlemain = "Unadjusted, Missed Adherence Carried Forward", 
 		nboot = &nboot, lib = cdp);
 
 /*Unadjusted; subset covs; new adherence definition*/
-%partB_unadjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Unadj.subset_cov_data.rtf", 
+%partB_unadjusted( outdest = "<path>\PartB.Unadj.subset_cov_data.rtf", 
 		inset = ExpertDAG_wide_subset, titlemain = "Unadjusted, Missed Adherence Carried Forward", 
 		nboot = &nboot, lib = cdp);
 
 /***************************************/
 /*Part A adj == linear regression*/
 /*Old adherence definition & old dataset / old covariates*/
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.old_covs.old_adhbin.test.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.old_covs.old_adhbin.test.rtf", 
 	inset =  ExpertDAG_wide_orig, 
 	titlemain = 'Adjusted, 1980 Replication, Missed Adherence = 0',  nboot = &nboot, lib=cdp, adhvar = old_adhx15bin, covs = &covs_orig);
 
 /*original 1980 adherence definition & new covariates /dataset*/
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.new_covs.old_adhbin.test.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.new_covs.old_adhbin.test.rtf", 
 	inset =  ExpertDAG_wide, 
 	titlemain = 'Adjusted, New covariates, Missed Adherence = 0',  nboot = &nboot, lib=cdp, adhvar = old_adhx15bin, covs = &covs_new);
 
 
 /*NEW adherence definition & old dataset / old covariates*/
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.old_covs.new_adhbin.test.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.old_covs.new_adhbin.test.rtf", 
 	inset =  ExpertDAG_wide_orig, 
 	titlemain = 'Adjusted, 2016 replication, Missed Adherence = .',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_orig);
 
 /*NEW adherence definition & new covariates /dataset*/
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.new_covs.new_adhbin.test.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.new_covs.new_adhbin.test.rtf", 
 	inset =  ExpertDAG_wide, 
 	titlemain = 'Adjusted, New covariates, Missed Adherence = .',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_new);
 
 /*original 1980 adherence definition & subset of covariates*/
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.subset_covs.old_adhbin.test.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.subset_covs.old_adhbin.test.rtf", 
 		inset = ExpertDAG_wide_subset, titlemain = 'Adjusted, Subset covariates, Missed Adherence = 0',  nboot = &nboot, lib=cdp, 
 	adhvar = old_adhx15bin, covs = &covs_subset);
 
 /*NEW adherence definition & subset of covariates*/
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.subset_covs.new_adhbin.test.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.subset_covs.new_adhbin.test.rtf", 
 		inset = ExpertDAG_wide_subset, titlemain = 'Adjusted, Subset covariates, Missed Adherence = 0',  nboot = &nboot, lib=cdp, 
 	adhvar = adhx15bin, covs = &covs_subset);
 
 
 /*NEW adherence definition & old dataset + new covariates*/
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.new_covs.new_adhbin.olddata.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.new_covs.new_adhbin.olddata.rtf", 
 	inset =  ExpertDAG_wide_orig, 
 	titlemain = 'Adjusted, 2016 replication, Missed Adherence = .',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_new);
 
@@ -110,39 +110,39 @@ libname cdp "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia
 
 /*old adherence definition*/
 /*updated adherence definition: old covariates /old data*/
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.orig_covs1.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.orig_covs1.rtf", 
 	inset =  ExpertDAG_wide_orig, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = old_adhx15bin, covs = &covs_orig);
 
 /*updated adherence definition: new covariates and AFTER deleting obs with missing values of the new vars*/
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.new_covs1.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.new_covs1.rtf", 
 	inset =  ExpertDAG_wide, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = old_adhx15bin, covs = &covs_new);
 
 /*updated adherence definition: subset covariates */
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.subset_covs1.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.subset_covs1.rtf", 
 	inset =  ExpertDAG_wide_subset, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = old_adhx15bin, covs = &covs_subset);
 
 /*new adherence definition*/
 /*updated adherence definition: old covariates /old data*/
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.orig_covs2.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.orig_covs2.rtf", 
 	inset =  ExpertDAG_wide_orig, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_orig);
 
 /*updated adherence definition: new covariates and AFTER deleting obs with missing values of the new vars*/
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.new_covs2.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.new_covs2.rtf", 
 	inset =  ExpertDAG_wide, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_new);
 
 /*updated adherence definition: subset covariates */
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.subset_covs2.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.subset_covs2.rtf", 
 	inset =  ExpertDAG_wide_subset, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_subset);
 
 
 /*updated adherence definition: new covariates and AFTER deleting obs with missing values of the new vars*/
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.new_covs3.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.new_covs3.rtf", 
 	inset =  ExpertDAG_wide_orig, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_new);
 
@@ -226,20 +226,20 @@ libname cdp "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia
 			CardioMFV_t1     CIGFV_t1    INACTFV_t1  ;
 
 /*original covs; original data*/
-%partC( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartC.orig_covs_test2.rtf", 
+%partC( outdest = "<path>\PartC.orig_covs_test2.rtf", 
 	inset = ExpertDAG_ag_orig, 
 	titlemain = 'Adherence at time t: IPW Adjusted, Missed Adherence Carried Forward', nboot = &nboot, lib=cdp, 
 		covs_0 = &covs_orig, covs_FV = &covs_origFV2 , covs_lag = &covs_origlag);
 
 /*Subset covs*/
-%partC( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartC.subset_covs1.rtf", 
+%partC( outdest = "<path>\PartC.subset_covs1.rtf", 
 		inset = ExpertDAG_ag_subset, 
 	titlemain = 'Adherence at time t: IPW Adjusted, Missed Adherence Carried Forward', nboot = &nboot, lib=cdp, 
 		covs_0 = &covs_subset, covs_FV = &covs_subsetFV , covs_lag = &covs_subset_lag);
 
 %let nboot = 500;
 /*New covs; new data*/
-%partC( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartC.new_covs_8.8.2022.rtf", 
+%partC( outdest = "<path>\PartC.new_covs_8.8.2022.rtf", 
 	inset = ExpertDAG_ag_new, 
 	titlemain = 'Adherence at time t: IPW Adjusted, Missed Adherence Carried Forward', nboot = &nboot, lib=cdp, 
 		covs_0 = &covs_new, covs_FV = &covsFV , covs_lag = &covs_lag);
@@ -247,7 +247,7 @@ libname cdp "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia
 	
 %let nboot = 500;
 /*New covs; old data*/
-%partC( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartC.new_covs2_8.15.2022.rtf", 
+%partC( outdest = "<path>\PartC.new_covs2_8.15.2022.rtf", 
 	inset = ExpertDAG_ag_orig, 
 	titlemain = 'Adherence at time t: IPW Adjusted, Missed Adherence Carried Forward', nboot = &nboot, lib=cdp, 
 		covs_0 = &covs_new, covs_FV = &covsFV , covs_lag = &covs_lag);
@@ -258,26 +258,26 @@ libname cdp "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia
 
 
 /*New covs list, data subset to original dataset + no missingness on new covs*/
-%partA_unadjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Unadj.new_data3.rtf", 
+%partA_unadjusted( outdest = "<path>\PartA.Unadj.new_data3.rtf", 
 		inset = ExpertDAG_wide2, titlemain = "Unadjusted, New data, Missed Adherence = 0", 
 		nboot = &nboot, lib = cdp);
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.new_covs.new_adhbin.test3.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.new_covs.new_adhbin.test3.rtf", 
 	inset =  ExpertDAG_wide2, 
 	titlemain = 'Adjusted, New covariates, Missed Adherence = .',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_new);
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.new_covs.new_adhbin.test3.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.new_covs.new_adhbin.test3.rtf", 
 	inset =  ExpertDAG_wide2, 
 	titlemain = 'Adjusted, New covariates, Missed Adherence = .',  nboot = &nboot, lib=cdp, adhvar = old_adhx15bin, covs = &covs_new);
-%partB_unadjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Unadj.new_cov_data3.rtf", 
+%partB_unadjusted( outdest = "<path>\PartB.Unadj.new_cov_data3.rtf", 
 		inset = ExpertDAG_wide2, titlemain = "Unadjusted, Missed Adherence Carried Forward", 
 		nboot = &nboot, lib = cdp);
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.new_covs3.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.new_covs3.rtf", 
 	inset =  ExpertDAG_wide2, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = old_adhx15bin, covs = &covs_new);
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.new_covs3.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.new_covs3.rtf", 
 	inset =  ExpertDAG_wide2, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_new);
 
-%partC( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartC.new_covs3.rtf", 
+%partC( outdest = "<path>\PartC.new_covs3.rtf", 
 	inset = ExpertDAG_ag_new2, 
 	titlemain = 'Adherence at time t: IPW Adjusted, Missed Adherence Carried Forward', nboot = &nboot, lib=cdp, 
 		covs_0 = &covs_new, covs_FV = &covsFV , covs_lag = &covs_lag);
@@ -297,16 +297,16 @@ libname cdp "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia
 			employ fulltime
 			hypertens htmed
 			hyperlipid_1 hyperlipid_2 ;
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.new_covs.new_adhbin.test4.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.new_covs.new_adhbin.test4.rtf", 
 	inset =  ExpertDAG_wide2, 
 	titlemain = 'Adjusted, New covariates, Missed Adherence = .',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_orig_plus);
-%partA_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartA.Adj.linear.new_covs.new_adhbin.test4.rtf", 
+%partA_adjusted( outdest = "<path>\PartA.Adj.linear.new_covs.new_adhbin.test4.rtf", 
 	inset =  ExpertDAG_wide2, 
 	titlemain = 'Adjusted, New covariates, Missed Adherence = .',  nboot = &nboot, lib=cdp, adhvar = old_adhx15bin, covs = &covs_orig_plus);
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.new_covs4.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.new_covs4.rtf", 
 	inset =  ExpertDAG_wide2, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = old_adhx15bin, covs = &covs_orig_plus);
-%partB_adjusted( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartB.Adj.logistic.new_covs4.rtf", 
+%partB_adjusted( outdest = "<path>\PartB.Adj.logistic.new_covs4.rtf", 
 	inset =  ExpertDAG_wide2, 
 	titlemain = 'Adjusted, Missed Adherence Carried Forward',  nboot = &nboot, lib=cdp, adhvar = adhx15bin, covs = &covs_orig_plus);
 
@@ -348,7 +348,7 @@ libname cdp "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia
 			afibFV_t1 
 ;
 
-%partC( outdest = "C:\Users\ejmurray\Dropbox\ProjectManagement\DAGopedia\CDP_DAG_Julia\SAS output\PartC.new_covs4.rtf", 
+%partC( outdest = "<path>\PartC.new_covs4.rtf", 
 	inset = ExpertDAG_ag_new2, 
 	titlemain = 'Adherence at time t: IPW Adjusted, Missed Adherence Carried Forward', nboot = &nboot, lib=cdp, 
 		covs_0 = &covs_orig_plus2, covs_FV = &covs_origFV_plus , covs_lag = &covs_origlag_plus);
