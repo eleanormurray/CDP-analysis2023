@@ -1,7 +1,17 @@
+
+
+/***************************************************/
+/* Program 1a: Data cleaning, Debertin et al 2024  */
+/* This program takes as input the full cleaned    */
+/* CDP trial dataset which is available from the   */
+/* NHLBI BioLINCC and renames the variables        */	
+/* to more intuitive, readable names		       */
+/***************************************************/	
+
 libname cdp '<path>';
 
 data cdp.expertDAG;
-set cdp.allcdp_new; /* allcdp_new.sas7bdat is the full cleaned trial data available from NHLBI*/
+set cdp.allcdp_new;
 where itr = 6;  /*ITR = 6 is placebo arm. */
 
 keep 
@@ -1586,40 +1596,6 @@ keep Adhx15Bin adhx15;
 
 keep adhpre0bin adh1-adh52  ;
 
-
-/****Code adherence to match original paper, where adherence = 0 on all missed visits*****/
-array inv(*) inv1-inv27;
-array old_adh(52) old_adh1-old_adh52;
-
-old_adh1 = adh1;
-if adh1 = . then old_adh1 = 0;  /*set adherence to 0 when missing*/
-
-ihigh=2;
-if invdth=0 and inv28>14 then ihigh=inv28;
-if (istat=3 or istat=6) and lvss>ihigh then ihigh=lvss;
-if invdth>2 then ihigh=invdth-1;
-
-old_adh27=old_adh1;
-do i=2 to ihigh;
-	if iadh(i)=6 then old_adh(i)=0;			/*if no prescription, then adh =0%*/
-	else if inv(i)=0 or inv(i)=2 or inv(i)=7 or inv(i)=8 then old_adh(i)=0;
-	else if capsFV(i) = . or iadh(i) = . then old_adh(i) = 0;
-	else old_adh(i)= adh(i);
-	if old_adh(i) = . then old_adh(i) = 0;
-end;
-do i=2 to ihigh;
-	old_adh(26+i)=(old_adh(26+i-1)*(i-1)+old_adh(i))/i;
-end;
-keep old_adh1-old_adh52;
-
-old_adhx=old_adh(26+ihigh);
-old_adhx15=old_adhx;
-if ihigh>15 then old_adhx15=old_adh41;
-
-old_Adhx15Bin = .;
-if old_Adhx15 ge 80 then old_Adhx15Bin = 0;
-if .<old_Adhx15 <80 then old_Adhx15Bin = 1;
-keep old_Adhx15Bin old_adhx old_adhx15;
 
 run;
 
