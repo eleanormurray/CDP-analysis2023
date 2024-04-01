@@ -8,8 +8,6 @@
 /*Crude and Standardized estimates*******************/
 /****************************************************/
 
-/*libname cdp "<path>\SAS data";
-*/
 
 %macro partB_unadjusted(outdest = , inset = , titlemain = , nboot=, lib=);
 proc printto print = &outdest;
