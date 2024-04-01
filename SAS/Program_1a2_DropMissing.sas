@@ -1,7 +1,11 @@
-/*********************************************/
-/*Program 1a.2.******************************/
-/*Drop observations with missing covariates*/
-/******************************************/
+
+/****************************************************/
+/* Program 1a.2: Debertin et al 2024 			    */
+/* This program takes as input a list of covariates */
+/* and drops observations with missingness		    */
+/* this ensures all analyses use the same input data*/
+/***************************************************/
+
 
 %let covs_new = adhbin0 age_bin mi_bin irk  occupation 
 			NIHA_FV0 rbw_bin nonwhite
@@ -28,7 +32,7 @@
 			IC_FV0  ICIA_FV0   DIG_FV0    DIUR_FV0    AntiArr_FV0    AntiHyp_FV0    OralHyp_FV0   
 			CardioM_FV0    CIG_FV0   INACT_FV0 ;
 
-
+/*all covariates in any analysis*/
 %let covs_new2 = adhbin0 age_bin mi_bin irk  occupation 
 			NIHA_FV0 rbw_bin nonwhite
 			cig_FV0 employ_FV0 fulltime_FV0 
@@ -82,33 +86,3 @@ run;
 
 %drop_missing(&covs_new2, data_in = cdp.ExpertDAG, data_out = cdp.ExpertDAG_wide2);
 
-
-proc freq data = missing; 
-tables adhbin0 occupation cig employ fulltime 
-			hypertens htmed
-			hyperlipid chf diab 
-			afib inact 
-			oralhyp rbw_bin nonwhite
-			adhpre0bin
-			dig ap aci niha_bin1 
-			irk cardioM
-			icia ic diur 
-			antihyp age_bin antiArr HiFastGluc mi_bin /list missing;
-run;
-
-/***********Set missing to indicator******/
-%macro missingdummy(covs=, data_in = ,data_out= );
-data &data_out;
-set &data_in;
-array covs {*} adhbin0 adhr_t1 &covs;
-
-do i = 1 to dim(covs);
-	if covs{i} = . then covs{i} = 99;
-end;
-run;
-
-%mend;
-
-%missingdummy(covs=&covs_new, data_in = cdp.ExpertDAG, data_out = cdp.ExpertDAG_wideMissInd_new);
-%missingdummy(covs=&covs_orig, data_in = cdp.ExpertDAG, data_out = cdp.ExpertDAG_wideMissInd_orig);
-%missingdummy(covs=&covs_subset, data_in = cdp.ExpertDAG, data_out = cdp.ExpertDAG_wideMissInd_subset);
